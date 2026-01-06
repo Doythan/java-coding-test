@@ -1,4 +1,4 @@
-package sort.S1931;
+package src.sort.S1931;
 
 import java.io.*;
 import java.util.*;
