@@ -7,16 +7,21 @@ Java로 코딩 테스트를 대비하기 위한 개인 학습 레포지토리입
 
 ## 학습 목표
 - Java 기반 코딩 테스트 문제 해결 능력 강화
-- 알고리즘 유형별 접근 패턴 정리
-- 실전에서 바로 사용할 수 있는 코드 템플릿 확보
+- 알고리즘 유형별 핵심 패턴 체계화
+- DFS/BFS, 정렬, 탐색 등 빈출 알고리즘 템플릿 확보
+- 문제 접근 → 구현 → 정리까지 한 사이클로 학습
 
 
 
 ## Repository Structure 📂 
 ```
 java-coding-test
-├─ sort 정렬 알고리즘 및 정렬 활용 문제
-└─ README.md
+├─ src
+│ ├─ dfs
+│ ├─ bfs
+│ ├─ sort
+│ └─ io
+├─ README.md
 ```
 
 ## Commit Rule
