@@ -41,9 +41,10 @@ public class InputOutputPrac {
     /**
      * 상황 2: 공백 없이 숫자가 붙어서 들어오는 경우 (그래프, 미로 탐색)
      * 예시:
-     * 2
-     * 10
-     * 11
+     * 3
+     * 101
+     * 101
+     * 111
      */
     static void gridInput() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
