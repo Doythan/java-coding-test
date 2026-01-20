@@ -48,6 +48,13 @@ Arrays.sort(arr, (a, b) -> a[0] == b[0] ? Integer.compare(a[1], b[1]) : Integer.
 // 방법 3.
 Arrays.sort(arr, (a, b) -> a[0] - b[0]);  // 오름차순
 Arrays.sort(arr, (a, b) -> b[0] - a[0]);  // 내림차순
+Arrays.sort(arr, (a, b) -> {
+    if (a[0] == b[0]) {
+        return a[1] - b[1]; // 0번이 같으면 1번 기준 오름차순
+    }
+    return b[0] - a[0];     // 기본적으로 0번 기준 내림차순
+});
+Arrays.sort(arr, (a, b) -> a[0] == b[0] ? a[1] - b[1] : b[0] - a[0]);
 ```
 * 첫 번째 기준이 같을 때 두 번째 기준 적용
 * 좌표 정렬, 범위 문제에서 자주 등장
