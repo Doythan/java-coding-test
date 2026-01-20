@@ -5,36 +5,50 @@
 
 ---
 
-## 1️⃣ 기본 배열 정렬
+## 1. 1차원 배열 정렬
 
 ### 오름차순
 
 ```java
-int[] arr = {5, 1, 4, 2, 3};
+int arr[] = {1, 10, 9, 8, 7, 6, 2, 3, 4, 5};
 Arrays.sort(arr);
 ```
-
 * 시간복잡도: `O(N log N)`
 * primitive 타입은 내부적으로 **Dual-Pivot QuickSort** 사용
 
 ### 내림차순
 
 ```java
-Integer[] arr = {5, 1, 4, 2, 3};
+Integer arr[] = {1, 10, 9, 8, 7, 6, 2, 3, 4, 5};
 Arrays.sort(arr, Collections.reverseOrder());
 ```
+* `int[]`에는 `reverseOrder()` 사용 불가 → `Integer[]` 필요
 
-⚠️ `int[]`에는 `reverseOrder()` 사용 불가 → `Integer[]` 필요
-
-## 2️⃣ 2차원 배열 정렬 (다중 조건)
+## 2. 2차원 배열 정렬
 
 ```java
-Arrays.sort(arr, (a, b) ->
-    a[0] == b[0] ? Integer.compare(a[1], b[1])
-                 : Integer.compare(a[0], b[0])
-);
-```
+// 방법 1.
+Arrays.sort(arr, Comparator.comparingInt(a -> a[0]));  // 오름차순
+Arrays.sort(arr, Comparator.comparingInt((int[] a) -> a[0]).reversed());  // 내림차순
+Arrays.sort(arr, Comparator.comparingInt((int[] a) -> a[0]).thenComparingInt(a -> a[1]));  // 다중 조건: a[0]이 같으면, a[1] 비교
+Arrays.sort(arr, Comparator.comparingInt((int[] a) -> a[0]).reversed().thenComparingInt(a -> a[1]).reversed());  // 다중 조건: a[0]이 같으면, a[1] 비교 (내림차순)
 
+// 방법 2.
+Arrays.sort(arr, (a, b) -> Integer.compare(a[0], b[0]));  // 오름차순
+Arrays.sort(arr, (a, b) -> Integer.compare(b[0], a[0]));  // 내림차순
+Arrays.sort(arr, (a, b) -> {
+    if (a[0] == b[0]) {
+        return Integer.compare(a[1], b[1]);
+    }
+    return Integer.compare(a[0], b[0]);
+});  // 다중 조건 
+Arrays.sort(arr, (a, b) -> a[0] == b[0] ? Integer.compare(a[1], b[1]) : Integer.compare(a[0], b[0]));  // 다중 조건(삼항연산자) 
+
+
+// 방법 3.
+Arrays.sort(arr, (a, b) -> a[0] - b[0]);  // 오름차순
+Arrays.sort(arr, (a, b) -> b[0] - a[0]);  // 내림차순
+```
 * 첫 번째 기준이 같을 때 두 번째 기준 적용
 * 좌표 정렬, 범위 문제에서 자주 등장
 
