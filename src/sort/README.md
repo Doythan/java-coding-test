@@ -27,6 +27,19 @@ Arrays.sort(arr, Collections.reverseOrder());
 ## 2. 2차원 배열 정렬
 
 ```java
+int arr[][] = {
+    {5, 5},
+    {5, 4},
+    {4, 4},
+    {4, 3},
+    {1, 1},
+    {1, 2},
+    {2, 1},
+    {2, 2},
+    {3, 2},
+    {3, 3},
+};
+
 // 방법 1.
 Arrays.sort(arr, Comparator.comparingInt(a -> a[0]));  // 오름차순
 Arrays.sort(arr, Comparator.comparingInt((int[] a) -> a[0]).reversed());  // 내림차순
@@ -56,6 +69,7 @@ Arrays.sort(arr, (a, b) -> {
 });
 Arrays.sort(arr, (a, b) -> a[0] == b[0] ? a[1] - b[1] : b[0] - a[0]);
 ```
+
 * 첫 번째 기준이 같을 때 두 번째 기준 적용
 * 좌표 정렬, 범위 문제에서 자주 등장
 
