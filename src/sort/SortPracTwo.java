@@ -1,52 +1,46 @@
 package src.sort;
 
 import java.util.*;
-
 public class SortPracTwo {
+
     public static void main(String[] args) {
-        int arr[][] = {
-            {5, 5},
-            {5, 4},
-            {4, 4},
-            {4, 3},
-            {1, 1},
-            {1, 2},
-            {2, 1},
-            {2, 2},
-            {3, 2},
-            {3, 3},
-        };
+        SortPracTwo spt = new SortPracTwo();
+        spt.new Person(0, "").objectOrder();
+    }
 
-        // 방법 1.
-        Arrays.sort(arr, Comparator.comparingInt(a -> a[0]));  // 오름차순
-        Arrays.sort(arr, Comparator.comparingInt((int[] a) -> a[0]).reversed());  // 내림차순
-        Arrays.sort(arr, Comparator.comparingInt((int[] a) -> a[0]).thenComparingInt(a -> a[1]));  // 다중 조건: a[0]이 같으면, a[1] 비교
-        Arrays.sort(arr, Comparator.comparingInt((int[] a) -> a[0]).reversed().thenComparingInt(a -> a[1]).reversed());  // 다중 조건: a[0]이 같으면, a[1] 비교 (내림차순)
+    // 객체 정렬 클래스
+    class Person {
+        int age;
+        String name;
 
-        // 방법 2.
-        Arrays.sort(arr, (a, b) -> Integer.compare(a[0], b[0]));  // 오름차순
-        Arrays.sort(arr, (a, b) -> Integer.compare(b[0], a[0]));  // 내림차순
-        Arrays.sort(arr, (a, b) -> {
-            if (a[0] == b[0]) {
-                return Integer.compare(a[1], b[1]);
-            }
-            return Integer.compare(a[0], b[0]);
-        });  // 다중 조건 
-        Arrays.sort(arr, (a, b) -> a[0] == b[0] ? Integer.compare(a[1], b[1]) : Integer.compare(a[0], b[0]));  // 다중 조건(삼항연산자) 
+        Person(int age, String name) {
+            this.age = age;
+            this.name = name;
+        }
+
+        // 객체 정렬 메서드
+        public void objectOrder() {
+            List<Person> people = Arrays.asList(
+                new Person(29, "도경원"),
+                new Person(22, "김서현"),
+                new Person(29, "정병학"),
+                new Person(28, "정원영")
+            );
+
+            // 조건 1개
+            people.sort(Comparator.comparingInt(p -> p.age)); // 나이 오름차순 
+            people.sort(Comparator.comparingInt((Person p) -> p.age).reversed()); // 나이 내림차순
+            people.sort(Comparator.comparing(p -> p.name)); // 이름 사전순
+            people.sort(Comparator.comparing((Person p) -> p.name).reversed()); // 이름 사전 반대순
+            
+            // 다중 조건 정렬 (나이 오름차순 -> 이름 사전순)
+            people.sort(
+                Comparator.comparingInt((Person p) -> p.age).thenComparing(p -> p.name)
+            );
 
 
-        // 방법 3.
-        Arrays.sort(arr, (a, b) -> a[0] - b[0]);  // 오름차순
-        Arrays.sort(arr, (a, b) -> b[0] - a[0]);  // 내림차순
-        Arrays.sort(arr, (a, b) -> a[0] - b[0]);  // 오름차순
-        Arrays.sort(arr, (a, b) -> b[0] - a[0]);  // 내림차순
-        Arrays.sort(arr, (a, b) -> {
-            if (a[0] == b[0]) {
-                return a[1] - b[1]; // 0번이 같으면 1번 기준 오름차순
-            }
-            return b[0] - a[0];     // 기본적으로 0번 기준 내림차순
-        });
-        Arrays.sort(arr, (a, b) -> a[0] == b[0] ? a[1] - b[1] : b[0] - a[0]);
-        System.out.println(Arrays.deepToString(arr));
+            for (Person p : people) System.out.println(p.name + " (" + p.age + "세)");
+        }
     }
 }
+

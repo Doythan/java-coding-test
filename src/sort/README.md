@@ -73,33 +73,35 @@ Arrays.sort(arr, (a, b) -> a[0] == b[0] ? a[1] - b[1] : b[0] - a[0]);
 * 첫 번째 기준이 같을 때 두 번째 기준 적용
 * 좌표 정렬, 범위 문제에서 자주 등장
 
-## 3️⃣ 문자열 정렬
+## 3. 문자열 배열 정렬
 
 ```java
-String[] words = {"banana", "apple", "watermelon", "ABC"};
-Arrays.sort(words);
+String[] languages = {"Java", "Python", "C", "JavaScript", "Dart"};
+Arrays.sort(languages);  // 오름차순 
+Arrays.sort(languages, Collections.reverseOrder());  // 내림차순
 ```
 
 * 기본: **사전순**
 * 대소문자 포함 시 ASCII 코드 기준
 
 
-## 4️⃣ List 정렬
+## 4. List 정렬
 
 ```java
 List<Integer> list = Arrays.asList(5, 1, 4, 2, 3);
+        
+// 1. 예전 스타일
+Collections.sort(list);
+Collections.sort(list, Comparator.reverseOrder());
 
-// 오름차순
+// 2. 요즘 스타일: (a, b) -> `list.sort((a, b) -> a.compareTo(b));` 와 완전히 동일함
 list.sort(Integer::compareTo);
-
-// 내림차순
 list.sort(Comparator.reverseOrder());
 ```
-
 * `Collections.sort()`보다 `list.sort()`가 최신 스타일
 
 
-## 5️⃣ 객체 정렬 (Comparator)
+## 5. 객체 정렬 (Comparator)
 
 ```java
 people.sort(
