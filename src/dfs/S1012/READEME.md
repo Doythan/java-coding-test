@@ -1,5 +1,6 @@
-package src.dfs.S1012;
+# 유기농 배추
 
+``` java
 import java.io.*;
 import java.util.*;
 
@@ -63,3 +64,5 @@ public class Main {
         }
     }
 }
+
+```
