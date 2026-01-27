@@ -1,11 +1,15 @@
-package src.BinarySearch.S1920;
+package src.binarysearch.S1920;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Main {
     static int N, M;
     static int[] arr, arrTwo;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
@@ -13,8 +17,8 @@ public class Main {
         N = Integer.parseInt(br.readLine());
         arr = new int[N];
         st = new StringTokenizer(br.readLine());
-        for (int i=0; i<N; i++) {
-            arr[i] = Integer.parseInt(st.nextToken()); 
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
         }
 
         Arrays.sort(arr);
@@ -22,11 +26,11 @@ public class Main {
         M = Integer.parseInt(br.readLine());
         arrTwo = new int[M];
         st = new StringTokenizer(br.readLine());
-        for (int i=0; i<M; i++) {
+        for (int i = 0; i < M; i++) {
             arrTwo[i] = Integer.parseInt(st.nextToken());
         }
 
-        for (int i=0; i<M; i++) {
+        for (int i = 0; i < M; i++) {
             int num = arrTwo[i];
             int result = isNumExists(num);
             System.out.println(result);
@@ -40,7 +44,8 @@ public class Main {
         while (left <= right) {
             int mid = left + (right - left) / 2;
 
-            if (arr[mid] == target) return 1;
+            if (arr[mid] == target)
+                return 1;
             if (arr[mid] < target) {
                 left = mid + 1;
                 continue;
