@@ -26,5 +26,32 @@ public class Main {
     }
 
     static void getMaxBudget(int left, int right) {
+        int maxBudget = 0;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            int tempBudget = 0;
+
+            for (int i = 0; i < N; i++) {
+                if (budgets[i] < mid) {
+                    tempBudget += budgets[i];
+                    continue;
+                }
+                if (budgets[i] >= mid) {
+                    tempBudget += mid;
+                    continue;
+                }
+            }
+
+            if (tempBudget > M)
+                right = mid - 1;
+            if (tempBudget <= M)
+                left = mid + 1;
+
+            if (maxBudget < mid && tempBudget <= M)
+                maxBudget = mid;
+        }
+
+        System.out.println(maxBudget);
     }
 }
